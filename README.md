@@ -1,5 +1,7 @@
 # Fleet Compliance Automation System
 
+![Fleet Compliance Automation System](assets/Fleet-Compliance-Automation-GitHub-Hero.png)
+
 > **Portfolio Disclaimer:** This project is a sanitized portfolio case study based on an Excel VBA compliance automation I designed for last-mile delivery operations. All internal system names, data sources, personnel references, and workflow specifics have been replaced with generalized equivalents. No proprietary company data, internal systems, or confidential process details are included.
 
 ---
@@ -17,7 +19,7 @@
 
 Every day before loadout, the compliance team needs to identify which specific vehicles to physically inspect as they stage for departure. This requires cross-referencing data from 4 separate internal operational systems to answer one question:
 
-"Which unaudited vehicles are dispatching today, and where and when will they be staged?"
+*"Which unaudited vehicles are dispatching today, and where and when will they be staged?"*
 
 ### The Manual Process (Before)
 
@@ -29,27 +31,22 @@ Every day before loadout, the compliance team needs to identify which specific v
 6. Figure out which vehicles have not been audited this compliance cycle
 7. Look up which route each vehicle is assigned to today
 8. Determine the wave time and staging area for each route
-9. Write it all down or build an ad-hoc sheet
+9. Sort and organize the final list for the compliance team
 
-**Time:** 30-45 minutes of error-prone manual lookups  
-**Risk:** Missing a vehicle, auditing the wrong one, or arriving at the wrong staging area at the wrong time
-
----
-
-## The Solution
-
-Used an AI assistant to design and build an Excel macro that automates the entire cross-referencing logic, turning 4 raw data exports into a single, sorted, color-coded audit sheet with QR codes for instant vehicle ID scanning.
+**Time required: 30-45 minutes daily. Error-prone. Required dedicated staff time every single morning.**
 
 ---
 
 ## How It Works
 
+![Sanitized workflow diagram](assets/Fleet-Compliance-Automation-Sanitized-Workflow-Diagram.png)
+
 ### Data Sources (4 Import Macros)
 
 | Source | Key Data |
 |--------|----------|
-| Fleet Management Portal - Driver Inspection Report | Vehicle ID to Unit ID mapping |
-| Fleet Management Portal - Compliance Audit List | Vehicle audit status and cycle period |
+| Fleet Management Portal — Driver Inspection Report | Vehicle ID to Unit ID mapping |
+| Fleet Management Portal — Compliance Audit List | Vehicle audit status and cycle period |
 | Route Dispatch System | Route to Wave time mapping |
 | Route Assignment System | Unit ID to Route and Driver name |
 
@@ -57,13 +54,21 @@ Used an AI assistant to design and build an Excel macro that automates the entir
 
 The main macro chains 4 dictionary lookups:
 
-Vehicle ID -> Unit ID -> Route -> Wave Time -> Staging Area
-                               -> Driver Name
-                               -> Carrier Code
+```
+Vehicle ID -> Unit ID -> Route -> Wave Time -> Staging Area -> Driver Name -> Carrier Code
+```
+
+Each lookup uses `Scripting.Dictionary` for O(1) in-memory key-value resolution, eliminating the need for any VLOOKUP formulas or manual row-by-row scanning.
 
 ### Output
 
 Sorted audit sheet by Wave Time, Staging Area, and Carrier priority order with color-coded departure windows and a QR Code sheet for instant vehicle ID scanning on-site.
+
+---
+
+## Sample Output
+
+![Sanitized sample output](assets/Fleet-Compliance-Automation-Sanitized-Sample-Output.png)
 
 ---
 
@@ -101,7 +106,7 @@ Already built: full browser automation that eliminates manual file downloads. A 
 
 - AI Assistant for architecture and code generation
 - Excel VBA for macro execution
-- Scripting.Dictionary for in-memory hash maps
+- `Scripting.Dictionary` for in-memory hash maps
 - HTTP requests for QR code API integration
 - QR Server API for QR code image generation
 
