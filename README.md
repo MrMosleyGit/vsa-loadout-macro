@@ -1,6 +1,6 @@
 # Fleet Compliance Automation System
 
-![Fleet Compliance Automation System](assets/Fleet-Compliance-Automation-GitHub-Hero.png)
+![Fleet Compliance Automation System](assets/Fleet-Compliance-Automation-Premium-GitHub-Hero-v2.png)
 
 > **Portfolio Disclaimer:** This project is a sanitized portfolio case study based on an Excel VBA compliance automation I designed for last-mile delivery operations. All internal system names, data sources, personnel references, and workflow specifics have been replaced with generalized equivalents. No proprietary company data, internal systems, or confidential process details are included.
 
